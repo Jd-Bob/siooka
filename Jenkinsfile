@@ -12,7 +12,7 @@ node {
         sh "./mvnw test -Punit"
      }
     stage("Deployment") {
-      sh 'java -jar target/demo-0.0.1-SNAPSHOT.jar -Dserver.port=9090'
+      sh 'java -jar target/demo-0.0.1-SNAPSHOT.jar -Dserver.port=9090 > /var/log/jenkins/demo-siooka.log'
       sh 'netstat -ntpl'
     }
   }
