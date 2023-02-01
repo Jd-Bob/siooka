@@ -12,7 +12,7 @@ node {
         sh "./mvnw test -Punit"
      }
     stage("Deployment") {
-      sh 'java -jar target/demo-0.0.1-SNAPSHOT.jar -Dserver.port=9090 &'
+      sh 'java -jar target/demo-0.0.1-SNAPSHOT.jar -Dserver.port=9090'
       sh 'netstat -ntpl'
     }
   }
