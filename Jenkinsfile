@@ -1,20 +1,35 @@
 node {
+
+    environment {
+        registry = "siooka/demo"
+        registryCredential = 'dockerhub_id'
+        dockerImage = ''
+    }
   stage("Clone") {
     git branch: 'master', url: 'https://github.com/Jd-Bob/siooka.git'
   }
 
   stage("Build") {
-    sh "./mvnw clean install"
+    stage("java package") {
+        sh "./mvnw clean install"
+     }
+    stage("docker image") {
+            steps {
+                    script {
+                        dockerImage = docker.build registry
+                    }
+                }
+         }
   }
 
-  stage("Continue Integration/Continue Deployment") {
+  stage("Continue Integration") {
     stage("Runing unit tests") {
         sh "./mvnw test -Punit"
      }
+  }
+  stage("Continue Deployment") {
     stage("Deployment") {
-      sh 'nohup java -jar target/demo-0.0.1-SNAPSHOT.jar -Dserver.port=9090 && sleep 4'
-      sh "cat nohup.out"
-      sh 'netstat -ntpl'
-    }
+        sh "docker run -p 8081:8080 " + registry
+      }
   }
 }
