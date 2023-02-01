@@ -12,7 +12,8 @@ node {
         sh "./mvnw test -Punit"
      }
     stage("Deployment") {
-      sh 'nohup java -jar target/demo-0.0.1-SNAPSHOT.jar -Dserver.port=9090 &'
+      sh 'nohup java -jar target/demo-0.0.1-SNAPSHOT.jar -Dserver.port=9090 && sleep 4'
+      sh "cat nohup.out"
       sh 'netstat -ntpl'
     }
   }
