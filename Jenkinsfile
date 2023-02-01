@@ -14,9 +14,7 @@ node {
         sh "./mvnw clean install"
      }
     stage("docker image") {
-                    script {
-                        dockerImage = docker.build registry
-                    }
+             sh "docker build -t demo ."
 
          }
   }
