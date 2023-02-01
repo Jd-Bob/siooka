@@ -12,8 +12,9 @@ node {
         sh "./mvnw test -Punit"
      }
     stage("Deployment") {
+      sh 'pwd; ll;'
       sh 'nohup ./mvnw spring-boot:run -Dserver.port=9090 &'
-      sh 'netstat -ntp'
+      sh 'netstat -ntpl'
     }
   }
 }
