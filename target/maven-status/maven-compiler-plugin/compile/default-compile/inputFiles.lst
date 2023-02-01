@@ -1,1 +1,3 @@
 /home/bob/workspaces/siooka/demo/src/main/java/com/siooka/demo/DemoApplication.java
+/home/bob/workspaces/siooka/demo/src/main/java/com/siooka/demo/data/data_transfert_object/SiretDetailsDto.java
+/home/bob/workspaces/siooka/demo/src/main/java/com/siooka/demo/controller/SiretController.java
