@@ -32,7 +32,7 @@ checkout scm
   }
   stage("Continue Deployment") {
     stage("Deployment") {
-        sh "docker run -p 8081:8080 demo "
+        sh "docker run -p 8081:8080 demo"
       }
   }
 }
