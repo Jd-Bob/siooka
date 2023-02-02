@@ -1,5 +1,5 @@
 node {
-
+checkout scm
     environment {
         registry = "siooka/demo"
         registryCredential = 'dockerhub_id'
@@ -14,7 +14,13 @@ node {
         sh "./mvnw clean install"
      }
     stage("docker image") {
-             sh "docker build -t demo ."
+
+
+        def customImage = docker.build("demo", ".")
+
+        customImage.inside {
+            sh 'echo "test"'
+        }
 
          }
   }
