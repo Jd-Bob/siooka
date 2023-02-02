@@ -13,6 +13,9 @@ checkout scm
     stage("java package") {
         sh "./mvnw clean install"
      }
+     stage("java package") {
+             sh "docker rmi demo"
+          }
     stage("docker image") {
 
 
@@ -32,7 +35,7 @@ checkout scm
   }
   stage("Continue Deployment") {
     stage("Deployment") {
-        sh "docker run -p 8081:8080 demo"
+        sh "docker run -p 8081:8088 demo"
       }
   }
 }
